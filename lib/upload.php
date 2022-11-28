@@ -1,7 +1,7 @@
 <?php
 
     define('DOCROOT', rtrim(realpath(__DIR__ . '/../../../'), '/'));
-    define('DOMAIN', rtrim(rtrim($_SERVER['HTTP_HOST'], '/') . str_replace('/extensions/multiuploadfield/lib', NULL, dirname($_SERVER['PHP_SELF'])), '/'));
+    define('DOMAIN', rtrim(rtrim($_SERVER['HTTP_HOST'], '/') . str_replace('/extensions/multiuploadfield/lib', '', dirname($_SERVER['PHP_SELF'])), '/'));
 
     // Is there vendor autoloader?
     require_once DOCROOT . '/vendor/autoload.php';
@@ -19,7 +19,7 @@
     else {
         $field_id = (int)$_REQUEST['field-id'];
         $entry_id = (int)$_REQUEST['entry-id'];
-        $position = (int)$_REQUEST['position'];
+        $position = (int)($_REQUEST['position'] ?? 0);
 
         if($entry_id <= 0) {
             $entry_id = null;
